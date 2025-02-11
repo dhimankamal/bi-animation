@@ -7,3 +7,14 @@
     -ms-overflow-style: none; /* Internet Explorer 11 */
   }
   
+
+  .selected-img{
+    border:1px solid #FF7F02;
+    border-radius: 15px;
+
+  }
+
+  .shadow-container{
+    filter: drop-shadow(5px 5px 10px #dddddd);
+    border-radius: 15px;
+  }
