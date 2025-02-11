@@ -21,32 +21,42 @@ document.addEventListener("wheel", (event) => {
     isScrolling = false;
   }, 1200);
   let direction = event.deltaY > 0 ? 1 : -1;
-  if (direction === -1 && order === 1) return;
+  if (direction === -1 && (order === 0 || order === 1)) {
+    document.getElementById(`order1`).style.opacity = "1";
+    document.getElementById(`order2`).style.opacity = "1";
+    document.querySelectorAll(`#order1 img`).forEach((img) => {
+      img.classList.remove("selected-img");
+    });
+  }
+  if (direction === -1 && order === 1) return order=order-1;
   if (direction === 1 && order === 4) return;
-  gsap.to(".scroll-container", {
-    scrollTo: {
+  if (order) {
+    gsap.to(".scroll-container", {
+      scrollTo: {
         y: `#order${direction === 1 ? order + 1 : order - 1}`, // Scrolls to the target element
         offsetY: 180, // Adds 30px offset from the top
       },
-    duration: 1,
-    ease: "power1.inOut",
-    onComplete: () => {},
-  });
-  if(order === 0){
+      duration: 1,
+      ease: "power1.inOut",
+      onComplete: () => {},
+    });
+    document.getElementById(`order${order}`).style.opacity = "0.4";
+    document.querySelectorAll(`#order${order} img`).forEach((img) => {
+      img.classList.remove("selected-img");
+    });
+  }
+
+  if (order === 0) {
     document.getElementById(`order2`).style.opacity = "0.4";
   }
-  if(order){
+  document.getElementById(
+    `order${direction === 1 ? order + 1 : order - 1}`
+  ).style.opacity = "1";
+  document
+    .querySelectorAll(`#order${direction === 1 ? order + 1 : order - 1} img`)
+    .forEach((img) => {
+      img.classList.add("selected-img");
+    });
 
-      document.getElementById(`order${order}`).style.opacity = "0.4";
-      document.querySelectorAll(`#order${order} img`).forEach(img => {
-        img.classList.remove("selected-img");
-      });
-  }
-  document.getElementById(`order${direction === 1 ? order + 1 : order - 1}`).style.opacity = "1";
-  document.querySelectorAll(`#order${direction === 1 ? order + 1 : order - 1} img`).forEach(img => {
-    img.classList.add("selected-img");
-  });
- 
   order = direction === 1 ? order + 1 : order - 1;
-  console.log("order",order)
-}); 
+});
