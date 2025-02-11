@@ -9,12 +9,11 @@
   
 
   .selected-img{
-    border:1px solid #FF7F02;
-    border-radius: 15px;
-
+    border:1px solid #FF7F02 !important;
   }
 
   .shadow-container{
     filter: drop-shadow(5px 5px 10px #dddddd);
     border-radius: 15px;
+    border: 1px solid rgba(255, 0, 0, 0);
   }

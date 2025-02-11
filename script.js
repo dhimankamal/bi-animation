@@ -3,7 +3,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 let sections = document.querySelectorAll("[id^='order']");
 let isScrolling = false; // ✅ Declare this globally
 let currentIndex = 0;
-let order = 1;
+let order = 0;
 
 // ✅ Fix passive event listener issue by setting { passive: false }
 document.addEventListener(
@@ -32,14 +32,21 @@ document.addEventListener("wheel", (event) => {
     ease: "power1.inOut",
     onComplete: () => {},
   });
+  if(order === 0){
+    document.getElementById(`order2`).style.opacity = "0.4";
+  }
+  if(order){
+
+      document.getElementById(`order${order}`).style.opacity = "0.4";
+      document.querySelectorAll(`#order${order} img`).forEach(img => {
+        img.classList.remove("selected-img");
+      });
+  }
   document.getElementById(`order${direction === 1 ? order + 1 : order - 1}`).style.opacity = "1";
-  document.getElementById(`order${order}`).style.opacity = "0.4";
   document.querySelectorAll(`#order${direction === 1 ? order + 1 : order - 1} img`).forEach(img => {
     img.classList.add("selected-img");
   });
-  document.querySelectorAll(`#order${order} img`).forEach(img => {
-    img.classList.remove("selected-img");
-  });
+ 
   order = direction === 1 ? order + 1 : order - 1;
   console.log("order",order)
 }); 
