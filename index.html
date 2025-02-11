@@ -7,9 +7,15 @@
     <link rel="stylesheet" href="./style.css" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
   </head>
-  <body>
+  <body class="bg-[#FF7F02]/20 relative">
+    <div class="">
+        <img id="left-text" src="./assets/images/text-1.png" class="opacity-0 w-[300px] absolute top-1/2 -translate-y-1/2 left-1/6" alt="">
+    </div>
+    <div class="">
+        <img id="right-text" src="./assets/images/text-1.png" class="opacity-0 w-[300px] absolute top-1/2 -translate-y-1/2 right-1/6" alt="">
+    </div>
     <div
-      class="relative border-red-400 relative h-screen flex justify-center items-center overflow-y-auto"
+      class="relative  border-red-400 relative h-screen flex justify-center items-center overflow-y-auto"
     >
       <div
         class="relative h-2/3 overflow-hidden rounded-[40px] flex items-center"
@@ -24,7 +30,7 @@
         </div>
       </div>
       <div
-        class="h-2/3 rounded-[80px] w-[300px] px-1 pl-3 py-10 pb-10 absolute scroll-container overflow-y-auto flex flex-col"
+        class="h-2/3 bg-white rounded-[80px] w-[280px] px-1 pl-3 py-10 pb-10 absolute scroll-container overflow-y-auto flex flex-col"
       >
         <div class="h-full text-center relative z-10">
           <div
