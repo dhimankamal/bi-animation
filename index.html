@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSAP ScrollTrigger Example</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <div
+      class="border-2 border-red-400 relative h-screen flex justify-center items-center overflow-y-auto"
+    >
+      <!-- <img
+        src="./assets/images/mockup.png"
+        class="h-screen z-50  top-0"
+        alt=""
+      /> -->
+      <div class="h-1/2 p-20 scroll-container overflow-y-auto flex flex-col">
+        <div class="h-full relative z-10">
+          <div id="order1" class="flex flex-col items-start justify-center">
+            <img src="./assets/images/heading.png" class="w-1/2" alt="hello" />
+            <img src="./assets/images/chart.png" alt="" />
+          </div>
+          <div id="order2">
+            <img src="./assets/images/stats.png" alt="" />
+          </div>
+          <div id="order3">
+            <img src="./assets/images/graph.png" alt="" />
+          </div>
+          <div id="order4">
+            <img src="./assets/images/footer.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!-- GSAP and ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js" integrity="sha512-1PKqXBz2ju2JcAerHKL0ldg0PT/1vr3LghYAtc59+9xy8e19QEtaNUyt1gprouyWnpOPqNJjL4gXMRMEpHYyLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="./script.js"></script>
+</html>
