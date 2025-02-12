@@ -4,6 +4,26 @@ let sections = document.querySelectorAll("[id^='order']");
 let isScrolling = false; // ✅ Declare this globally
 let currentIndex = 0;
 let order = 0;
+const textArray = [
+  {},
+
+  {
+    heading: "Real Time Monitoring",
+    p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
+  },
+  {
+    heading: "Detailed Analytics",
+    p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
+  },
+  {
+    heading: "Overview Graph",
+    p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
+  },
+  {
+    heading: "Historical Data",
+    p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
+  },
+];
 
 // ✅ Fix passive event listener issue by setting { passive: false }
 document.addEventListener(
@@ -76,14 +96,16 @@ document.addEventListener("wheel", (event) => {
       duration: 0.5,
       onComplete: () => {},
     });
-    document.getElementById(
-      "left-text"
-    ).src = `./assets/images/text-${order}.png`;
+    const leftElement = document.getElementById("left-text");
+    leftElement.querySelector("h2").innerText = textArray[order].heading;
+    leftElement.querySelector("p").innerText = textArray[order].p;
+    leftElement.querySelector("img").src = `./assets/images/data-${order}.png`;
   } else {
     // odd
-    document.getElementById(
-      "right-text"
-    ).src = `./assets/images/text-${order}.png`;
+    const leftElement = document.getElementById("right-text");
+    leftElement.querySelector("h2").innerText = textArray[order].heading;
+    leftElement.querySelector("p").innerText = textArray[order].p;
+    leftElement.querySelector("img").src = `./assets/images/data-${order}.png`;
     gsap.to(`#left-text`, {
       opacity: 0,
       duration: 0.5,
@@ -95,5 +117,4 @@ document.addEventListener("wheel", (event) => {
       onComplete: () => {},
     });
   }
- 
 });
