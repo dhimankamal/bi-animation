@@ -23,6 +23,10 @@ const textArray = [
     heading: "Historical Data",
     p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
   },
+  {
+    heading: "Alerts & Notifications",
+    p: "Real Time Monitoring displays solar intake, battery percentage, power usage and charge for any trailer, in real time.",
+  },
 ];
 
 document.addEventListener(
@@ -67,10 +71,42 @@ document.addEventListener("wheel", (event) => {
       img.classList.remove("selected-img");
     });
   }
-  if (direction === -1 && order === 1) return (order = order - 1);
-  if (direction === 1 && order === 4) return;
-  if (order) {
 
+
+
+  if (direction === -1 && order === 1) return (order = order - 1);
+  if (direction === 1 && order === 6) return;
+
+  if (order === 4 && direction === 1) {
+    console.log("order4",)
+    gsap.to("#order5", {
+      opacity: 100,
+      x: 0
+    })
+    gsap.to(`#right-text`, {
+      opacity: 1,
+      duration: 1,
+      onComplete: () => { },
+    });
+    gsap.to(`#left-text`, {
+      opacity: 0,
+      duration: 0.5,
+      onComplete: () => { },
+    });
+    const leftElement = document.getElementById("right-text");
+    leftElement.querySelector("h2").innerText = textArray[5].heading;
+    leftElement.querySelector("p").innerText = textArray[5].p;
+    leftElement.querySelector("img").src = `./assets/images/data-${5}.png`;
+    return
+  }
+  if (order === 4 && direction === -1) {
+    gsap.to("#order5", {
+      opacity: 0,
+      x: 300,
+    });
+  }
+
+  if (order) {
     gsap.to(".scroll-container", {
       scrollTo: {
         y: `#order${direction === 1 ? order + 1 : order - 1}`,
@@ -80,11 +116,6 @@ document.addEventListener("wheel", (event) => {
       ease: "power1.inOut",
       onComplete: () => { },
     });
-
-
-
-
-
     document.getElementById(`order${order}`).style.opacity = "0.4";
     document.querySelectorAll(`#order${order} img`).forEach((img) => {
       img.classList.remove("selected-img");
