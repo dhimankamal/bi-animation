@@ -82,7 +82,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: auto;
+  overflow: none;
   border: 1px solid #f87171;
 }
 
@@ -93,6 +93,8 @@ body {
   border-radius: 2.5rem;
   display: flex;
   align-items: center;
+  scale: 1.6;
+    top: 60%;
 }
 
 .mockup {

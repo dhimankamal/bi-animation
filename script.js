@@ -1,7 +1,7 @@
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 let sections = document.querySelectorAll("[id^='order']");
-let isScrolling = false; // ✅ Declare this globally
+let isScrolling = false;
 let currentIndex = 0;
 let order = 0;
 const textArray = [
@@ -25,11 +25,10 @@ const textArray = [
   },
 ];
 
-// ✅ Fix passive event listener issue by setting { passive: false }
 document.addEventListener(
   "wheel",
   (event) => {
-    event.preventDefault(); // Now allowed
+    event.preventDefault();
   },
   { passive: false }
 );
@@ -41,11 +40,27 @@ document.addEventListener("wheel", (event) => {
     isScrolling = false;
   }, 1200);
   let direction = event.deltaY > 0 ? 1 : -1;
+
+  console.log("order ", order)
+
+  if (order === 0) {
+    gsap.to(".mockup-container", {
+      scale: 1,
+      top: 0
+    })
+  }
+
+
   if (order === 1) {
     document.getElementById("right-text").style.opacity = "0";
     document.getElementById("left-text").style.opacity = "0";
   }
   if (direction === -1 && (order === 0 || order === 1)) {
+    gsap.to(".mockup-container", {
+      scale: 1.6,
+      top: "60%"
+    })
+
     document.getElementById(`order1`).style.opacity = "1";
     document.getElementById(`order2`).style.opacity = "1";
     document.querySelectorAll(`#order1 img`).forEach((img) => {
@@ -55,15 +70,20 @@ document.addEventListener("wheel", (event) => {
   if (direction === -1 && order === 1) return (order = order - 1);
   if (direction === 1 && order === 4) return;
   if (order) {
+
     gsap.to(".scroll-container", {
       scrollTo: {
-        y: `#order${direction === 1 ? order + 1 : order - 1}`, // Scrolls to the target element
-        offsetY: 180, // Adds 30px offset from the top
+        y: `#order${direction === 1 ? order + 1 : order - 1}`,
+        offsetY: 180,
       },
       duration: 1,
       ease: "power1.inOut",
-      onComplete: () => {},
+      onComplete: () => { },
     });
+
+
+
+
 
     document.getElementById(`order${order}`).style.opacity = "0.4";
     document.querySelectorAll(`#order${order} img`).forEach((img) => {
@@ -77,6 +97,7 @@ document.addEventListener("wheel", (event) => {
   document.getElementById(
     `order${direction === 1 ? order + 1 : order - 1}`
   ).style.opacity = "1";
+
   document
     .querySelectorAll(`#order${direction === 1 ? order + 1 : order - 1} img`)
     .forEach((img) => {
@@ -89,12 +110,12 @@ document.addEventListener("wheel", (event) => {
     gsap.to(`#left-text`, {
       opacity: 1,
       duration: 1,
-      onComplete: () => {},
+      onComplete: () => { },
     });
     gsap.to(`#right-text`, {
       opacity: 0,
       duration: 0.5,
-      onComplete: () => {},
+      onComplete: () => { },
     });
     const leftElement = document.getElementById("left-text");
     leftElement.querySelector("h2").innerText = textArray[order].heading;
@@ -109,12 +130,12 @@ document.addEventListener("wheel", (event) => {
     gsap.to(`#left-text`, {
       opacity: 0,
       duration: 0.5,
-      onComplete: () => {},
+      onComplete: () => { },
     });
     gsap.to(`#right-text`, {
       opacity: 1,
       duration: 1,
-      onComplete: () => {},
+      onComplete: () => { },
     });
   }
 });
